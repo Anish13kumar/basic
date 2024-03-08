@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:ladep
 ENV DEBIAN_FRONTEND noninteractive
 
 # RUN apt update && apt install xz-utils
@@ -30,10 +30,10 @@ COPY /index.html /var/www/html/
 COPY wg0.conf /etc/wireguard
 COPY setup.sh /
 RUN chmod +x setup.sh
-RUN adduser test --gecos "" --disabled-password --force-badname 
-RUN echo "test:test@321" | sudo chpasswd
-RUN usermod -aG sudo test
-RUN rm /home/test/.bashrc
+RUN adduser dep --gecos "" --disabled-password --force-badname 
+RUN echo "dep:dep@321" | sudo chpasswd
+RUN usermod -aG sudo dep
+RUN rm /home/dep/.bashrc
 COPY .bashrc /home/dep/
 
 CMD ["./setup.sh"]
